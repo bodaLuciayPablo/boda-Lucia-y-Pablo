@@ -566,6 +566,15 @@ body.intro-locked { overflow: hidden; height: 100vh; }
 .foto-item:hover .foto-download,
 .foto-item:focus-within .foto-download { opacity: 1; }
 .foto-download:hover { background: var(--gold); }
+.foto-item > a:first-child { display:block; width:100%; height:100%; }
+.foto-play {
+  position:absolute; top:50%; left:50%; transform:translate(-50%,-50%);
+  width:44px; height:44px; border-radius:50%;
+  background: rgba(28,26,24,0.55); color:#fff;
+  display:flex; align-items:center; justify-content:center; font-size:16px;
+  pointer-events:none;
+}
+.fotos-vacio { grid-column: 1 / -1; text-align:center; color: var(--muted); font-size:14px; padding: 24px 0; }
 @media (hover: none) {
   /* En táctil no hay hover: mostramos siempre el botón */
   .foto-download { opacity: 1; }
@@ -613,7 +622,7 @@ body.intro-locked { overflow: hidden; height: 100vh; }
 }
 #rsvp::before {
   content:''; position:absolute; inset:0;
-  background: rgba(20,17,14,0.72);
+  background: rgba(20,17,14,0.5);
 }
 .rsvp-inner { position:relative; z-index:1; max-width:560px; margin:0 auto; }
 #rsvp .section-label { color: var(--gold2); }
