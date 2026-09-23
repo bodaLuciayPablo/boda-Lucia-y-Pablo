@@ -1,5 +1,5 @@
 /* ── URL DE GOOGLE APPS SCRIPT ── */
-const SCRIPT_URL = 'https://script.google.com/macros/s/AKfycbxW32_yCuvdeN0CqvbILYCsPb-MlFco-jlDPwN6Djmq19Mhkgrj4mu6e_lMfuvqckivDg/exec';
+const SCRIPT_URL = 'https://script.google.com/macros/s/AKfycbw4i-xvxLwwk1856Wi72LGNOWe54ImUXKVM-oRaSPFXYw7wWMREZ6HBcOFXItfEAz33sw/exec';
 /* ── SOBRE DE BIENVENIDA ── */
 (function () {
   const overlay  = document.getElementById('intro-overlay');
@@ -202,87 +202,124 @@ function submitRSVP() {
 
 /* ── CARGAR FOTOS EN LA GALERÍA ── */
 function cargarGalería() {
-  const gridContainer = document.getElementById('grid-fotos');
-  if (!gridContainer) return;
-  
-  // Para recibir JSON desde Google Apps Script se debe omitir mode: 'no-cors'
+  const grid = document.getElementById('grid-fotos');
+  if (!grid) return;
+
   fetch(SCRIPT_URL)
-    .then(response => response.json())
+    .then(r => r.json())
     .then(data => {
-      if (data.result === 'success' && data.fotos && data.fotos.length > 0) {
-        gridContainer.innerHTML = ''; // Limpiar mensaje de carga
-        
-        data.fotos.forEach(foto => {
-          const item = document.createElement('div');
-          item.className = 'foto-item';
-          item.innerHTML = `<img src="${foto.url}" alt="Foto de la boda" loading="lazy">`;
-          gridContainer.appendChild(item);
-        });
-      } else {
-    
+      if (data.result !== 'success') throw new Error(data.error || 'Respuesta no válida');
+      grid.innerHTML = '';
+
+      if (!data.fotos || data.fotos.length === 0) {
+        grid.innerHTML = '<p class="fotos-vacio">Todavía no hay fotos. ¡Sé el primero en compartir una!</p>';
+        return;
       }
+
+      data.fotos.forEach(foto => {
+        const item = document.createElement('div');
+        item.className = 'foto-item';
+        const enlace = foto.ver || foto.url;
+        item.innerHTML = `
+          <a href="${enlace}" target="_blank" rel="noopener">
+            <img src="${foto.url}" alt="Foto de la boda" loading="lazy" referrerpolicy="no-referrer">
+            ${foto.tipo === 'video' ? '<span class="foto-play">▶</span>' : ''}
+          </a>
+          ${foto.descargar ? `<a class="foto-download" href="${foto.descargar}" title="Descargar" aria-label="Descargar">↓</a>` : ''}`;
+        // Si Drive aún no ha generado la miniatura, ocultamos la casilla rota
+        item.querySelector('img').onerror = () => item.remove();
+        grid.appendChild(item);
+      });
     })
     .catch(err => {
       console.error('Error al cargar la galería:', err);
-      gridContainer.innerHTML = '<p style="text-align: center; width: 100%; color: #666;">No se pudieron cargar las fotos en este momento.</p>';
+      grid.innerHTML = '<p class="fotos-vacio">No se pudieron cargar las fotos en este momento.</p>';
     });
 }
 
-// Cargar la galería automáticamente al abrir la página
 document.addEventListener('DOMContentLoaded', cargarGalería);
 
-/* ── SUBIR FOTOS Y REFRESCAR GALERÍA ── */
-function uploadFoto() {
-  const nombreInput = document.getElementById('f-nombre').value.trim();
-  const fileInput   = document.getElementById('f-archivo');
-  const file        = fileInput.files[0];
-  const btn         = document.getElementById('btn-foto');
+/* ── SUBIR FOTOS Y VÍDEOS ── */
+// Google Apps Script acepta ~50 MB por envío; en base64 el archivo crece un 33 %
+const MAX_MB = 35;
 
-  if (!file) {
-    alert('Por favor, selecciona una foto.');
+function leerBase64(file) {
+  return new Promise((ok, ko) => {
+    const reader = new FileReader();
+    reader.onload = e => ok(e.target.result.split(',')[1]);
+    reader.onerror = () => ko(new Error('No se pudo leer el archivo'));
+    reader.readAsDataURL(file);
+  });
+}
+
+async function subirUno(file, nombre) {
+  const data = await leerBase64(file);
+  const payload = {
+    tipo: 'foto',
+    archivo: {
+      data,
+      mimeType: file.type || 'application/octet-stream',
+      nombre: `${nombre}_${Date.now()}_${file.name}`
+    }
+  };
+  // Sin 'no-cors' para poder leer la respuesta y saber si ha ido bien
+  const res = await fetch(SCRIPT_URL, {
+    method: 'POST',
+    headers: { 'Content-Type': 'text/plain;charset=utf-8' },
+    body: JSON.stringify(payload)
+  });
+  const json = await res.json();
+  if (json.result !== 'success') throw new Error(json.error || 'Error desconocido');
+}
+
+async function uploadFoto() {
+  const nombre = document.getElementById('f-nombre').value.trim() || 'Invitado';
+  const files  = Array.from(document.getElementById('f-archivo').files);
+  const btn    = document.getElementById('btn-foto');
+  const ok     = document.getElementById('foto-success');
+
+  if (files.length === 0) {
+    alert('Por favor, selecciona al menos una foto o vídeo.');
     return;
   }
 
+  const grandes = files.filter(f => f.size > MAX_MB * 1024 * 1024);
+  if (grandes.length) {
+    alert(`Estos archivos pesan más de ${MAX_MB} MB y no se pueden subir desde la web:\n\n` +
+          grandes.map(f => '· ' + f.name).join('\n') +
+          '\n\nPrueba con un vídeo más corto o envíanoslo por WhatsApp.');
+    return;
+  }
+
+  ok.style.display = 'none';
   btn.disabled = true;
-  btn.innerText = 'SUBIENDO...';
+  const fallos = [];
 
-  const reader = new FileReader();
-  reader.onload = function (e) {
-    const rawData = e.target.result.split(',')[1];
-    
-    const payload = {
-      tipo: 'foto',
-      archivo: {
-        data: rawData,
-        mimeType: file.type,
-        nombre: `${nombreInput}_${Date.now()}_${file.name}`
-      }
-    };
+  for (let i = 0; i < files.length; i++) {
+    btn.innerText = files.length > 1 ? `SUBIENDO ${i + 1} DE ${files.length}...` : 'SUBIENDO...';
+    try {
+      await subirUno(files[i], nombre);
+    } catch (err) {
+      console.error('Error subiendo', files[i].name, err);
+      fallos.push(files[i].name);
+    }
+  }
 
-    fetch(SCRIPT_URL, {
-      method: 'POST',
-      mode: 'no-cors',
-      headers: { 'Content-Type': 'text/plain;charset=utf-8' },
-      body: JSON.stringify(payload)
-    })
-    .then(() => {
-      document.getElementById('foto-form').reset();
-      document.getElementById('foto-success').style.display = 'block';
-      btn.disabled = false;
-      btn.innerText = 'SUBIR OTRA FOTO';
-      
-      // Esperar 2 segundos a que Drive procese el archivo y refrescar la galería
-      setTimeout(cargarGalería, 2000);
-    })
-    .catch(err => {
-      console.error(err);
-      alert('Error al subir la imagen. Inténtalo de nuevo.');
-      btn.disabled = false;
-      btn.innerText = 'SUBIR FOTO';
-    });
-  };
+  btn.disabled = false;
 
-  reader.readAsDataURL(file);
+  if (fallos.length === files.length) {
+    btn.innerText = 'SUBIR FOTO O VÍDEO';
+    alert('No se ha podido subir. Inténtalo de nuevo en unos minutos.');
+    return;
+  }
+
+  document.getElementById('foto-form').reset();
+  btn.innerText = 'SUBIR MÁS FOTOS';
+  ok.style.display = 'block';
+  if (fallos.length) {
+    alert('Algunos archivos no se han podido subir:\n\n' + fallos.map(f => '· ' + f).join('\n'));
+  }
+  setTimeout(cargarGalería, 2000);
 }
 
 /* ── CUENTA ATRÁS ── */
