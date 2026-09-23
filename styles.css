@@ -608,7 +608,7 @@ body.intro-locked { overflow: hidden; height: 100vh; }
   border: 0;
 }
 #rsvp {
-  background: url('confirmacion.jpg') center/cover no-repeat, url('https://elregajal.es/wp-content/themes/yootheme/cache/10/foto-patio-montaje-evento-noche-1029127b.jpeg') center/cover no-repeat;
+  background: url('https://encrypted-tbn1.gstatic.com/images?q=tbn:ANd9GcQYk0_PGfZ1RK8eRBi3xTS1PM1GI5gbDwtJYajfyWx_kYD-YseC') center/cover no-repeat, url('https://elregajal.es/wp-content/themes/yootheme/cache/10/foto-patio-montaje-evento-noche-1029127b.jpeg') center/cover no-repeat;
   position: relative; padding: 140px 48px; text-align:center;
 }
 #rsvp::before {
