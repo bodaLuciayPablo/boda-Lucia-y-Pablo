@@ -189,22 +189,6 @@ body.intro-locked { overflow: hidden; height: 100vh; }
   animation: heroZoom 14s ease-out forwards;
 }
 @keyframes heroZoom { to { transform: scale(1); } }
-/* Ordenador: la foto vertical se ve completa (sin recortar las manos)
-   y los laterales se rellenan con la misma foto desenfocada */
-@media (min-width: 900px) {
-  .hero-bg {
-    background: url('WhatsApp%20Image%202026-09-21%20at%2019.18.04.jpeg') center/cover no-repeat;
-  }
-  .hero-bg::before {
-    content: ''; position: absolute; inset: -40px;
-    background: inherit;
-    filter: blur(28px) brightness(0.8);
-  }
-  .hero-bg::after {
-    content: ''; position: absolute; inset: 0;
-    background: url('WhatsApp%20Image%202026-09-21%20at%2019.18.04.jpeg') center/contain no-repeat;
-  }
-}
 .hero-overlay {
   position: absolute; inset:0;
   background: linear-gradient(180deg, rgba(20,17,14,0.35) 0%, rgba(20,17,14,0.55) 60%, rgba(20,17,14,0.75) 100%);
@@ -280,16 +264,8 @@ body.intro-locked { overflow: hidden; height: 100vh; }
 
 /* ── BIENVENIDA ── */
 #bienvenida {
-  display: grid; grid-template-columns: 1fr 1fr;
+  display: grid; grid-template-columns: 1fr;
   min-height: 85vh;
-}
-.bienvenida-img {
-  background: url('https://img.freepik.com/foto-gratis/mira-atras-sillas-blancas-pie-cesped-verde-antes-altar-boda_1304-3711.jpg') center/cover no-repeat;
-  position: relative;
-}
-.bienvenida-img::after {
-  content:''; position:absolute; inset:0;
-  background: linear-gradient(135deg, rgba(139,94,74,0.08) 0%, transparent 60%);
 }
 .bienvenida-text {
   background: var(--cream);
@@ -297,6 +273,9 @@ body.intro-locked { overflow: hidden; height: 100vh; }
   justify-content: center;
   padding: 80px 72px;
 }
+/* Sin foto: el texto va en una columna centrada */
+.bienvenida-text > * { width: 100%; max-width: 720px; margin-left: auto; margin-right: auto; }
+.bienvenida-text > .countdown-wrap { max-width: 720px; margin: 48px auto 0; }
 .bienvenida-text blockquote {
   font-family: 'Cormorant Garamond', serif;
   font-size: 28px; font-style: italic; font-weight: 300;
@@ -743,7 +722,6 @@ footer {
 /* ── RESPONSIVE ── */
 @media(max-width:900px) {
   #bienvenida { grid-template-columns:1fr; }
-  .bienvenida-img { height:55vw; }
   .bienvenida-text { padding:60px 40px; }
   .eldia-grid { grid-template-columns:1fr; gap:56px; }
   #eldia { padding:80px 32px; }
