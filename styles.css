@@ -184,7 +184,7 @@ body.intro-locked { overflow: hidden; height: 100vh; }
 }
 .hero-bg {
   position: absolute; inset:0;
-  background: url('portada.jpg') center/cover no-repeat, url('https://images.ecestaticos.com/-r7TpUsITMSvmCT2jBGJ_OBUMIU=/0x0:2272x1515/1200x900/filters:fill(white):format(jpg)/f.elconfidencial.com%2Foriginal%2Fcf1%2F02e%2Fd2f%2Fcf102ed2f582a5b953fbca7f031c6ce6.jpg') center/cover no-repeat;
+  background: url('WhatsApp%20Image%202026-09-21%20at%2019.18.04.jpeg') center 80%/cover no-repeat, url('https://images.ecestaticos.com/-r7TpUsITMSvmCT2jBGJ_OBUMIU=/0x0:2272x1515/1200x900/filters:fill(white):format(jpg)/f.elconfidencial.com%2Foriginal%2Fcf1%2F02e%2Fd2f%2Fcf102ed2f582a5b953fbca7f031c6ce6.jpg') center/cover no-repeat;
   transform: scale(1.05);
   animation: heroZoom 14s ease-out forwards;
 }
