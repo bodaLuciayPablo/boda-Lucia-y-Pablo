@@ -189,6 +189,22 @@ body.intro-locked { overflow: hidden; height: 100vh; }
   animation: heroZoom 14s ease-out forwards;
 }
 @keyframes heroZoom { to { transform: scale(1); } }
+/* Ordenador: la foto vertical se ve completa (sin recortar las manos)
+   y los laterales se rellenan con la misma foto desenfocada */
+@media (min-width: 900px) {
+  .hero-bg {
+    background: url('WhatsApp%20Image%202026-09-21%20at%2019.18.04.jpeg') center/cover no-repeat;
+  }
+  .hero-bg::before {
+    content: ''; position: absolute; inset: -40px;
+    background: inherit;
+    filter: blur(28px) brightness(0.8);
+  }
+  .hero-bg::after {
+    content: ''; position: absolute; inset: 0;
+    background: url('WhatsApp%20Image%202026-09-21%20at%2019.18.04.jpeg') center/contain no-repeat;
+  }
+}
 .hero-overlay {
   position: absolute; inset:0;
   background: linear-gradient(180deg, rgba(20,17,14,0.35) 0%, rgba(20,17,14,0.55) 60%, rgba(20,17,14,0.75) 100%);
