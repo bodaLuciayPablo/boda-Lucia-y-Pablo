@@ -205,7 +205,8 @@ function cargarGalería() {
   const grid = document.getElementById('grid-fotos');
   if (!grid) return;
 
-  fetch(SCRIPT_URL)
+  // '?t=' evita que el navegador muestre una lista antigua guardada en caché
+  fetch(SCRIPT_URL + '?t=' + Date.now(), { cache: 'no-store' })
     .then(r => r.json())
     .then(data => {
       if (data.result !== 'success') throw new Error(data.error || 'Respuesta no válida');
@@ -222,12 +223,17 @@ function cargarGalería() {
         const enlace = foto.ver || foto.url;
         item.innerHTML = `
           <a href="${enlace}" target="_blank" rel="noopener">
-            <img src="${foto.url}" alt="Foto de la boda" loading="lazy" referrerpolicy="no-referrer">
+            <img src="https://lh3.googleusercontent.com/d/${foto.id}=w1000" alt="Foto de la boda" loading="lazy" referrerpolicy="no-referrer">
             ${foto.tipo === 'video' ? '<span class="foto-play">▶</span>' : ''}
           </a>
           ${foto.descargar ? `<a class="foto-download" href="${foto.descargar}" title="Descargar" aria-label="Descargar">↓</a>` : ''}`;
         // Si Drive aún no ha generado la miniatura, ocultamos la casilla rota
-        item.querySelector('img').onerror = () => item.remove();
+        const img = item.querySelector('img');
+        img.onerror = () => {
+          // Plan B: miniatura de Drive; si tampoco carga, ocultamos la casilla
+          if (!img.dataset.retry) { img.dataset.retry = 1; img.src = foto.url; }
+          else item.remove();
+        };
         grid.appendChild(item);
       });
     })
