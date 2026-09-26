@@ -37,15 +37,27 @@ window.addEventListener('scroll', () => {
 });
 
 /* ── MOBILE MENU ── */
+const mobileMenu = document.getElementById('mobile-menu');
+
 function openMobileMenu() {
-  document.getElementById('mobile-menu').style.display = 'flex';
+  mobileMenu.style.display = 'flex';
   document.body.style.overflow = 'hidden';
 }
 
 function closeMobileMenu() {
-  document.getElementById('mobile-menu').style.display = 'none';
+  mobileMenu.style.display = 'none';
   document.body.style.overflow = '';
 }
+
+// Se cierra al tocar un enlace, la ✕ o el fondo oscuro
+mobileMenu.addEventListener('click', (e) => {
+  if (e.target.closest('a') || e.target.closest('.close-btn') || e.target === mobileMenu) {
+    closeMobileMenu();
+  }
+});
+// Y con la tecla Escape o si la pantalla pasa a tamaño ordenador
+document.addEventListener('keydown', (e) => { if (e.key === 'Escape') closeMobileMenu(); });
+window.addEventListener('resize', () => { if (window.innerWidth > 900) closeMobileMenu(); });
 
 /* ── REVEAL ON SCROLL ── */
 const revealEls = document.querySelectorAll('.reveal');
