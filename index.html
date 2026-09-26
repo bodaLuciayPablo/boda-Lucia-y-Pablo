@@ -1,160 +1,799 @@
 <!DOCTYPE html>
 <html lang="es">
-<head>
-<meta charset="UTF-8">
-<meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>Estilismo — Ainhoa Agüera</title>
-<link rel="preconnect" href="https://fonts.googleapis.com">
-<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-<link href="https://fonts.googleapis.com/css2?family=Fraunces:opsz,wght@9..144,400;9..144,600&family=Work+Sans:wght@400;500;600&display=swap" rel="stylesheet">
-<link rel="stylesheet" href="styles.css">
-</head>
-<body>
+   <head>
+      <meta charset="UTF-8" />
+      <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+      <title>Lucía & Pablo · 24 de abril de 2027</title>
 
-<header class="site-header">
-  <a class="wordmark" href="index.html">Ainhoa Agüera</a>
-  <button class="nav-toggle" id="navToggle" aria-label="Abrir menú" aria-expanded="false">
-    <span></span><span></span>
-  </button>
-  <nav class="site-nav" id="siteNav">
-    <a href="index.html" aria-current="page">Trabajo</a>
-    <a href="about.html">Sobre mí</a>
-    <a href="contact.html">Contacto</a>
-  </nav>
-</header>
+      <!-- Open Graph -->
+      <meta property="og:title" content="¡Nos Casamos! Lucía & Pablo" />
+      <meta
+         property="og:description"
+         content="24 de Abril de 2027 · Finca El Regajal, Aranjuez. ¡Te esperamos!"
+      />
+      <meta
+         property="og:image"
+         content="https://bodaluciaypablo.github.io/boda-Lucia-y-Pablo/Gemini_Generated_Image_3a9cy03a9cy03a9c.jpg"
+      />
+      <meta property="og:image:type" content="image/jpeg" />
+      <meta property="og:image:width" content="1376" />
+      <meta property="og:image:height" content="768" />
+      <meta property="og:image:alt" content="Lucía y Pablo de la mano entre viñedos al atardecer" />
+      <meta name="twitter:card" content="summary_large_image" />
+      <meta property="og:url" content="https://bodaluciaypablo.github.io/boda-Lucia-y-Pablo/" />
+      <meta property="og:type" content="website" />
 
-<main>
-  <p class="crumb"><a href="index.html">Trabajo</a> — Estilismo</p>
+      <!-- Fuentes -->
+      <link rel="preconnect" href="https://fonts.googleapis.com" />
+      <link
+         href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,300;0,400;0,500;1,300;1,400&family=Jost:wght@200;300;400;500&display=swap"
+         rel="stylesheet"
+      />
 
-  <!-- Cada foto muestra sus créditos al pasar el cursor (o al tocar, en móvil).
-       Las fotos de asistencia llevan la clase "tile tile--asistencia": eso
-       añade el pequeño ✱ fijo en la esquina, además de la etiqueta habitual. -->
-  <section class="work">
-    <div class="tile-grid">
+      <!-- Estilos -->
+      <link rel="stylesheet" href="styles.css?v=17" />
+   </head>
+   <body>
+      <!-- MENÚ MÓVIL -->
+      <div id="mobile-menu">
+         <button class="close-btn" onclick="closeMobileMenu()">✕</button>
+         <a href="#bienvenida" onclick="closeMobileMenu()">Bienvenidos</a>
+         <a href="#eldia" onclick="closeMobileMenu()">Agenda</a>
+         <a href="#aranjuez" onclick="closeMobileMenu()">Estancia</a>
+         <a href="#faq" onclick="closeMobileMenu()">Nuestro lugar</a>
+         <a href="#rsvp" onclick="closeMobileMenu()">Confirmar asistencia</a>
+         <a href="#fotos" onclick="closeMobileMenu()">Comparte tus fotos</a>
+      </div>
 
-   <figure class="tile">
-  <button class="thumb" data-full="estilismos/estilismos1.0.jpg, estilismos/estilismos1.1.jpg" aria-label="Ampliar imagen">
-    <img src="estilismos/estilismos1.0.jpg" alt="Estilismo" loading="lazy">
-  </button>
-  <figcaption class="tile-caption"><span class="cap-a"></span><span class="cap-b"></span></figcaption>
-</figure>
+      <!-- NAV -->
+      <nav id="nav">
+         <div class="nav-logo">L & P</div>
+         <ul class="nav-links">
+            <li><a href="#bienvenida">Bienvenidos</a></li>
+            <li><a href="#eldia">Agenda</a></li>
+            <li><a href="#aranjuez">Estancia</a></li>
+            <li><a href="#faq">Nuestro lugar</a></li>
+            <li><a href="#rsvp">Confirmar asistencia</a></li>
+            <li><a href="#fotos">Comparte tus fotos</a></li>
+         </ul>
+         <div class="nav-burger" onclick="openMobileMenu()">
+            <span></span><span></span><span></span>
+         </div>
+      </nav>
 
-      <figure class="tile tile--asistencia">
-        <button class="thumb" data-full="estilismos/estilismos2.0.jpg, estilismos/estilismos2.1.jpg, estilismos/estilismos2.2.jpg" aria-label="Ampliar imagen">
-          <img src="estilismos/estilismos2.0.jpg" alt="Asistencia">
-        </button>
-        <figcaption class="tile-caption"><span class="cap-a">Asistencia a Camille Ange Pailler</span><span class="cap-b">Autre MAgazine</span></figcaption>
-      </figure>
+      <!-- 1. HERO -->
+      <section id="hero">
+         <div class="hero-bg"></div>
+         <div class="hero-overlay"></div>
+         <div class="hero-content">
+            <span class="hero-eyebrow">Os invitamos a nuestra boda</span>
+            <h1 class="hero-names">Lucía<br /><em>&</em> Pablo</h1>
+            <div class="hero-divider">
+               <div class="hero-divider-line"></div>
+               <div class="hero-divider-diamond"></div>
+               <div class="hero-divider-line"></div>
+            </div>
+            <p class="hero-date">
+               Sábado, 24 de abril de 2027 &nbsp;·&nbsp; El Regajal, Aranjuez
+            </p>
+         </div>
+         <div class="hero-scroll">
+            <div class="hero-scroll-line"></div>
+         </div>
+      </section>
 
-      <figure class="tile tile--asistencia">
-  <div class="video-embed">
-    <iframe
-      src="https://www.youtube.com/embed/V3IVdLo-2NM?autoplay=1&mute=1&loop=1&playlist=V3IVdLo-2NM&controls=0&modestbranding=1&rel=0&playsinline=1"
-      title="Vídeo"
-      allow="autoplay; encrypted-media"
-      loading="lazy">
-    </iframe>
-  </div>
-  <figcaption class="tile-caption"><span class="cap-a">Asistencia a Gaby Camejo</span><span class="cap-b">Vestuario de Natasha Ofili — vídeo de Coldplay</span></figcaption>
-</figure>
+      <!-- 2. BIENVENIDA -->
+      <section id="bienvenida">
+         <div class="bienvenida-text">
+            <div class="reveal">
+               <span class="section-label">Bienvenidos</span>
+               <blockquote>
+                  "El amor no se mira, el amor se comparte."
+               </blockquote>
+               <h2 class="section-title">
+                  Queremos<br />compartirlo<br />con vosotros
+               </h2>
+               <p class="section-body">
+                  Nos conocimos en la universidad y, casi sin darnos cuenta,
+                  empezamos a construir una vida juntos. Desde entonces han
+                  pasado 8 años en los que hemos aprendido a construir un
+                  hogar, comenzado nuestra vida laboral y compartido
+                  innumerables viajes, planes y proyectos de vida que no
+                  paran de crecer. Y por el camino llegó Turrón, nuestro
+                  compañero de cuatro patas, sin el que ya no imaginamos
+                  nuestra familia.
+                  <br /><br />
+                  Ahora queremos dar un paso más y celebrar con vosotros en
+                  la Bodega El Regajal todo lo que hemos vivido y lo que
+                  está por venir. Un lugar ideal para nosotros rodeado de
+                  naturaleza, buena gastronomía y, sobre todo, de las
+                  personas que más queremos.
+               </p>
+            </div>
 
-      <figure class="tile">
-        <button class="thumb" data-full="estilismos/estilismos3.0.jpg, estilismos/estilismos3.1.jpg" aria-label="Ampliar imagen">
-          <img src="estilismos/estilismos3.0.jpg" alt="">
-        </button>
-        <figcaption class="tile-caption"><span class="cap-a"></span><span class="cap-b"></span></figcaption>
-      </figure>
+            <!-- CUENTA ATRÁS -->
+            <div class="countdown-wrap reveal" id="countdown">
+               <div class="cd-item">
+                  <span class="cd-num" id="cd-dias">—</span>
+                  <span class="cd-label">Días</span>
+               </div>
+               <div class="cd-item">
+                  <span class="cd-num" id="cd-horas">—</span>
+                  <span class="cd-label">Horas</span>
+               </div>
+               <div class="cd-item">
+                  <span class="cd-num" id="cd-min">—</span>
+                  <span class="cd-label">Minutos</span>
+               </div>
+               <div class="cd-item">
+                  <span class="cd-num" id="cd-seg">—</span>
+                  <span class="cd-label">Segundos</span>
+               </div>
+            </div>
+         </div>
+      </section>
 
-      <figure class="tile tile--asistencia">
-        <button class="thumb" data-full="estilismos/estilismos4.0.jpg" aria-label="Ampliar imagen">
-          <img src="estilismos/estilismos4.0.jpg" alt="Asistencia">
-        </button>
-        <figcaption class="tile-caption"><span class="cap-a">Asistencia a Davide Andreatta</span><span class="cap-b">To Be Megazine</span></figcaption>
-      </figure>
+      <!-- 3. EL DÍA -->
+      <section id="eldia">
+         <div class="eldia-header reveal">
+            <span class="section-label">Agenda</span>
+            <h2 class="eldia-title">Un fin de semana juntos</h2>
+         </div>
 
-      <!-- PENDIENTE: anuncio de Iberia — vídeo propio (no está en YouTube).
-           Subir el archivo comprimido como estilismos/iberia.mp4 (+ iberia-poster.jpg) y descomentar.
-      <figure class="tile tile--asistencia">
-        <div class="video-embed">
-          <video src="estilismos/iberia.mp4" poster="estilismos/iberia-poster.jpg"
-                 autoplay muted loop playsinline preload="metadata"
-                 aria-label="Anuncio de Iberia"></video>
+         <div class="eldia-grid">
+            <!-- Preboda -->
+            <div class="reveal">
+               <span class="ev-number">01.</span>
+               <div class="ev-photo">
+                  <img
+                     src="IMG_3465.jpeg"
+                     alt="Casa Triviño Eventos, Aranjuez"
+                     loading="lazy"
+                  />
+               </div>
+               <h3 class="ev-title">La noche antes</h3>
+               <p class="ev-desc">
+                  Empezamos a celebrar la noche antes con un picoteo informal
+                  donde reunirnos todos los que, desde diferentes ámbitos,
+                  formáis parte de nuestra historia. Una ocasión para
+                  compartir un rato juntos, conocernos en un ambiente
+                  relajado y disfrutar de los primeros momentos de este fin
+                  de semana tan especial. Eso sí, guardad energía… ¡al día
+                  siguiente toca darlo todo!
+               </p>
+               <div class="ev-meta">
+                  <div class="ev-meta-row">
+                     <span class="ev-meta-key">Cuándo</span>
+                     <span>Viernes, 23 de abril de 2027 · 19:00 h</span>
+                  </div>
+                  <div class="ev-meta-row">
+                     <span class="ev-meta-key">Dónde</span>
+                     <span>Casa Triviño Eventos, Aranjuez</span>
+                  </div>
+               </div>
+               <details class="info-toggle">
+                  <summary><span>Dress code recomendado: <strong>Smart Casual</strong></span></summary>
+                  <div class="info-toggle-body">
+                     <p>
+                        Queremos veros guapos y cómodos para disfrutar juntos
+                        de una tarde-noche de primavera. Siempre que el
+                        tiempo acompañe, disfrutaremos de la terraza y el
+                        jardín, así que os recomendamos traer alguna prenda
+                        de abrigo, la temperatura puede refrescar al caer la
+                        noche.
+                     </p>
+                        <p><strong>Ellas:</strong> vestido o conjunto chic, chaqueta ligera y zapatos arreglados, pero no necesariamente formales.</p>
+                        <p><strong>Ellos:</strong> pantalón chino o de vestir, camisa o polo elegante, jersey fino o chaqueta ligera (americana opcional) y zapatos arreglados, pero no necesariamente formales.</p>
+                  </div>
+               </details>
+               <details class="info-toggle">
+                  <summary>Parking gratuito en la calle</summary>
+                  <div class="info-toggle-body">
+                     <p>
+                        Recomendamos venir en grupo para reducir el número de
+                        vehículos. Aunque hay espacio suficiente de
+                        aparcamiento a lo largo de la calle, así evitamos que
+                        tengáis que caminar demasiado para llegar al lugar.
+                     </p>
+                  </div>
+               </details>
+
+               <div class="ev-map">
+                  <iframe
+                     src="https://maps.google.com/maps?q=Casa+Trivi%C3%B1o+Eventos,+Aranjuez&t=&z=15&ie=UTF8&iwloc=&output=embed"
+                     loading="lazy"
+                     referrerpolicy="no-referrer-when-downgrade"
+                     title="Mapa Casa Triviño Eventos, Aranjuez"
+                  ></iframe>
+               </div>
+
+               <div class="ev-links">
+                  <a
+                     class="ev-link"
+                     href="https://maps.app.goo.gl/rEZZsLxuCs4rCkhB8"
+                     target="_blank"
+                  >
+                     Cómo llegar en coche · Google Maps
+                     <span class="ev-link-arrow">→</span>
+                  </a>
+                  <a
+                     class="ev-link"
+                     href="https://www.casatrivinoeventos.com"
+                     target="_blank"
+                  >
+                     Web de Casa Triviño Eventos
+                     <span class="ev-link-arrow">→</span>
+                  </a>
+                  <a
+                     class="ev-link"
+                     href="https://calendar.google.com/calendar/render?action=TEMPLATE&text=Preboda+Luc%C3%ADa+%26+Pablo&dates=20270423T170000Z/20270423T220000Z&details=Casa+Trivi%C3%B1o+Eventos,+Aranjuez&location=Casa+Trivi%C3%B1o+Eventos,+Aranjuez"
+                     target="_blank"
+                  >
+                     Añadir a Google Calendar
+                     <span class="ev-link-arrow">→</span>
+                  </a>
+                  <a
+                     class="ev-link"
+                     href="data:text/calendar;charset=utf8,BEGIN:VCALENDAR%0AVERSION:2.0%0ABEGIN:VEVENT%0ADTSTART:20270423T170000Z%0ADTEND:20270423T220000Z%0ASUMMARY:Preboda%20Luc%C3%ADa%20%26%20Pablo%0ALOCATION:Casa%20Trivi%C3%B1o%20Eventos%2C%20Aranjuez%0AEND:VEVENT%0AEND:VCALENDAR"
+                     download="preboda-lucia-pablo.ics"
+                  >
+                     Añadir a Apple Calendar
+                     <span class="ev-link-arrow">→</span>
+                  </a>
+               </div>
+            </div>
+
+            <!-- Boda -->
+            <div class="reveal">
+               <span class="ev-number">02.</span>
+               <div class="ev-photo">
+                  <img
+                     src="https://elregajal.es/wp-content/themes/yootheme/cache/4d/PHOTO-2022-06-30-19-48-45-4d206534.jpeg"
+                     alt="Finca El Regajal"
+                     loading="lazy"
+                     onerror="this.onerror=null;this.src='https://elregajal.es/wp-content/themes/yootheme/cache/1c/05.06.2019-20-1c19d306.jpeg'"
+                  />
+               </div>
+               <h3 class="ev-title">El gran día</h3>
+               <p class="ev-desc">
+                  Llega el gran día que con tanta ilusión hemos estado
+                  preparando. Ceremonia junto a los viñedos, cóctel en los
+                  jardines, banquete acompañado con los vinos de la propia
+                  bodega y una fiesta para celebrarlo como se merece. Será
+                  un día muy especial que esperamos compartir con todos
+                  vosotros y que, juntos, hagamos inolvidable.
+               </p>
+               <div class="ev-meta">
+                  <div class="ev-meta-row">
+                     <span class="ev-meta-key">Cuándo</span>
+                     <span>Sábado, 24 de abril de 2027 · 13:00 h<br /><strong>Os pedimos llegar 15 minutos antes para llegar puntuales a la ceremonia</strong></span>
+                  </div>
+                  <div class="ev-meta-row">
+                     <span class="ev-meta-key">Dónde</span>
+                     <span>Finca El Regajal, Aranjuez</span>
+                  </div>
+                  <div class="ev-meta-row">
+                     <span class="ev-meta-key">Parking</span>
+                     <span>Gratuito en la finca</span>
+                  </div>
+               </div>
+
+               <details class="info-toggle">
+                  <summary><span>Dress code recomendado: <strong>Elegancia de día</strong></span></summary>
+                  <div class="info-toggle-body">
+                     <p>
+                        Os animamos a elegir un look elegante y sofisticado,
+                        pensado para una celebración de día y en armonía con
+                        este día tan especial. Evitad el blanco y el negro
+                        riguroso. ¡Queremos una boda bonita y alegre!
+                     </p>
+                     <p><strong>Ellas:</strong> vestido midi o conjunto elegante, acompañado de bolso pequeño y zapatos de salón o fiesta. Tocado o pamela, opcional.</p>
+                     <p><strong>Ellos:</strong> traje, tanto en tonos oscuros como claros, acompañado de camisa, corbata y zapatos de vestir.</p>
+                  </div>
+               </details>
+
+
+               <div class="ev-map">
+                  <iframe
+                     src="https://maps.google.com/maps?q=Finca+El+Regajal,+Aranjuez&t=&z=15&ie=UTF8&iwloc=&output=embed"
+                     loading="lazy"
+                     referrerpolicy="no-referrer-when-downgrade"
+                     title="Mapa Finca El Regajal, Aranjuez"
+                  ></iframe>
+               </div>
+
+               <div class="ev-links">
+                  <a
+                     class="ev-link"
+                     href="https://maps.app.goo.gl/gKK39LXkAkDCPLd69"
+                     target="_blank"
+                  >
+                     Cómo llegar en coche · Google Maps
+                     <span class="ev-link-arrow">→</span>
+                  </a>
+                  <a
+                     class="ev-link"
+                     href="https://calendar.google.com/calendar/render?action=TEMPLATE&text=Boda+Luc%C3%ADa+%26+Pablo&dates=20270424T110000Z/20270425T000000Z&details=Finca+El+Regajal,+Aranjuez&location=Finca+El+Regajal,+Antigua+Ctra+Andaluc%C3%ADa+km+50.5,+Aranjuez"
+                     target="_blank"
+                  >
+                     Añadir a Google Calendar
+                     <span class="ev-link-arrow">→</span>
+                  </a>
+                  <a
+                     class="ev-link"
+                     href="data:text/calendar;charset=utf8,BEGIN:VCALENDAR%0AVERSION:2.0%0ABEGIN:VEVENT%0ADTSTART:20270424T110000Z%0ADTEND:20270425T000000Z%0ASUMMARY:Boda%20Luc%C3%ADa%20%26%20Pablo%0ALOCATION:Finca%20El%20Regajal%2C%20Aranjuez%0AEND:VEVENT%0AEND:VCALENDAR"
+                     download="boda-lucia-pablo.ics"
+                  >
+                     Añadir a Apple Calendar
+                     <span class="ev-link-arrow">→</span>
+                  </a>
+               </div>
+            </div>
+         </div>
+      </section>
+
+
+      <!-- 5. ARANJUEZ / ESTANCIA -->
+      <section id="aranjuez">
+         <div class="estancia-hero">
+            <div class="estancia-hero-inner reveal">
+               <span class="section-label">Estancia</span>
+               <h2 class="section-title">Aranjuez</h2>
+               <p class="section-body" style="margin: 0 auto">
+                  Para los que venís de fuera de Aranjuez y decidáis quedaros
+                  alguna noche, os dejamos algunas recomendaciones de
+                  alojamiento, restaurantes donde disfrutar de la gastronomía
+                  local y lugares con encanto que merece la pena ver.
+               </p>
+            </div>
+         </div>
+
+         <div class="estancia-info reveal">
+            <div class="estancia-block">
+               <h3 class="estancia-block-title">Dónde hospedarse</h3>
+               <p class="estancia-block-text">
+                  Encontraréis diferentes opciones en Aranjuez, desde
+                  apartamentos y casas completas en plataformas como Booking
+                  o Airbnb, hasta hostales y hoteles. La finca está a unos
+                  4 km de Aranjuez y, al ser una ciudad pequeña, las
+                  distancias son cortas, por lo que cualquier elección será
+                  una buena opción. Indicadnos en el formulario si
+                  necesitáis alojamiento y lo tendremos en cuenta para
+                  preparar una reserva conjunta para la boda.
+                  <br /><br />
+                  Nuestros favoritos son el <strong>Hotel NH****</strong>,
+                  el <strong>Hotel Equo***</strong> (nuestra recomendación
+                  por su cercanía tanto a la finca como al centro de
+                  Aranjuez y por su relación calidad-precio) y
+                  <strong>El Cocherón 1919**</strong>.
+               </p>
+            </div>
+            <div class="estancia-block">
+               <h3 class="estancia-block-title">Dónde comer</h3>
+               <p class="estancia-block-text">
+                  Algunos restaurantes típicos con gastronomía local de
+                  calidad son <strong>El Rana Verde</strong>,
+                  <strong>El Corral de la Abuela</strong>,
+                  <strong>Casa José</strong>, <strong>El Parterre</strong>,
+                  <strong>El Tomate</strong> y <strong>Aguatinta</strong>.
+               </p>
+            </div>
+         </div>
+
+         <div class="reveal" style="margin-top: 80px">
+            <span class="section-label">Aranjuez</span>
+            <h2 class="section-title">Qué visitar</h2>
+            <p class="section-body" style="margin: 0 auto">
+               Aranjuez es Patrimonio de la Humanidad y uno de los rincones más
+               bellos de España. Si llegáis el viernes o extendéis el fin de
+               semana, no os perdáis estos lugares.
+            </p>
+         </div>
+
+         <div class="aranjuez-grid reveal">
+            <div class="lugar-card">
+               <a
+                  href="https://www.patrimonionacional.es/visita/palacio-real-de-aranjuez"
+                  target="_blank"
+               >
+                  <div class="lugar-card-img">
+                     <img
+                        src="https://www.elindependiente.com/wp-content/uploads/2023/03/ARANJUEZ_EuropaPress_2490886_exterior_palacio_real_aranjuez_cuya_construccion_fue_erigida_orden_felipe-scaled.jpg"
+                        alt="Palacio Real de Aranjuez"
+                        loading="lazy"
+                     />
+                  </div>
+               </a>
+               <div class="lugar-card-body">
+                  <h3 class="lugar-card-title">Palacio Real</h3>
+                  <p class="lugar-card-text">
+                     Residencia de verano de los reyes de España, con interiores
+                     fastuosos y jardines impecables. Imprescindible.
+                  </p>
+               </div>
+            </div>
+
+            <div class="lugar-card">
+               <a
+                  href="https://www.patrimonionacional.es/visita/palacio-real-de-aranjuez/espacios/jardin-del-principe"
+                  target="_blank"
+               >
+                  <div class="lugar-card-img">
+                     <img
+                        src="https://www.patrimonionacional.es/sites/default/files/styles/full/public/2020-05/02-jardin_del_principe.jpg?itok=RFhMOoYT"
+                        alt="Jardín del Príncipe Aranjuez"
+                        loading="lazy"
+                        onerror="this.src='https://upload.wikimedia.org/wikipedia/commons/thumb/f/f5/Aranjuez_Jardin_del_Principe.JPG/1280px-Aranjuez_Jardin_del_Principe.JPG'"
+                     />
+                  </div>
+               </a>
+               <div class="lugar-card-body">
+                  <h3 class="lugar-card-title">Jardín del Príncipe</h3>
+                  <p class="lugar-card-text">
+                     El jardín más extenso de Aranjuez, con árboles centenarios,
+                     fuentes y el Río Tajo como telón de fondo.
+                  </p>
+               </div>
+            </div>
+
+            <div class="lugar-card">
+               <a
+                  href="https://www.patrimonionacional.es/visita/jardines-de-aranjuez"
+                  target="_blank"
+               >
+                  <div class="lugar-card-img">
+                     <img
+                        src="https://upload.wikimedia.org/wikipedia/commons/7/78/Aranjuez_JardinParterre_CoronaFloral.jpg"
+                        alt="Jardín del Parterre Aranjuez"
+                        loading="lazy"
+                     />
+                  </div>
+               </a>
+               <div class="lugar-card-body">
+                  <h3 class="lugar-card-title">
+                     Jardines de la Isla y el Parterre
+                  </h3>
+                  <p class="lugar-card-text">
+                     Jardines formales renacentistas junto al río. Perfectos
+                     para un paseo tranquilo entre setos y esculturas.
+                  </p>
+               </div>
+            </div>
+
+            <div class="lugar-card">
+               <a
+                  href="https://www.patrimonionacional.es/visita/casa-del-labrador"
+                  target="_blank"
+               >
+                  <div class="lugar-card-img">
+                     <img
+                        src="https://www.madrid.org/monumentoscercanias/images/947x500-casita-labrador2.jpg"
+                        alt="Casa del Labrador Aranjuez"
+                        loading="lazy"
+                        onerror="this.src='https://upload.wikimedia.org/wikipedia/commons/thumb/b/b4/CasaLabrador.jpg/1280px-CasaLabrador.jpg'"
+                     />
+                  </div>
+               </a>
+               <div class="lugar-card-body">
+                  <h3 class="lugar-card-title">Casa del Labrador</h3>
+                  <p class="lugar-card-text">
+                     Un pabellón real de estilo neoclásico escondido entre los
+                     jardines, con interiores de una riqueza sorprendente.
+                  </p>
+               </div>
+            </div>
+
+            <div class="lugar-card">
+               <a
+                  href="https://visita.aranjuez.es/espacios/gastronomia/"
+                  target="_blank"
+               >
+                  <div class="lugar-card-img">
+                     <img
+                        src="https://www.epe.es/ideas/Comunidad-de-Madrid-Aranjuez-gastronomia/images/spotlight-02.jpg"
+                        alt="Gastronomía Aranjuez"
+                        loading="lazy"
+                        onerror="this.src='https://upload.wikimedia.org/wikipedia/commons/thumb/7/72/Paseo_barcos_tajo_aranjuez.jpg/1280px-Paseo_barcos_tajo_aranjuez.jpg'"
+                     />
+                  </div>
+               </a>
+               <div class="lugar-card-body">
+                  <h3 class="lugar-card-title">Gastronomía local</h3>
+                  <p class="lugar-card-text">
+                     Abril es el mes por excelencia de la huerta ribereña. No
+                     os podéis ir sin probar los dos tesoros de Aranjuez en
+                     su mejor momento: el fresón y los espárragos verdes. Si
+                     queréis llevaros producto local de calidad, hay varias
+                     fruterías tradicionales donde lo podéis encontrar.
+                     Preguntadnos y os recomendaremos nuestros sitios
+                     favoritos. También hay otros productos excelentes de la
+                     huerta de Aranjuez como las alcachofas y la auténtica
+                     fresa de Aranjuez, una variedad tradicional pequeña y
+                     muy aromática, distinta del fresón comúnmente conocido.
+                  </p>
+               </div>
+            </div>
+
+         </div>
+      </section>
+
+      <!-- 7. FAQ -->
+      <section id="faq">
+         <div class="faq-inner">
+            <div class="reveal" style="text-align: center; margin-bottom: 64px">
+               <span class="section-label">Información</span>
+               <h2 class="section-title">Todo lo que<br />necesitas saber</h2>
+            </div>
+
+            <div class="faq-item reveal">
+               <button class="faq-q" onclick="toggleFaq(this)">
+                  ¿Puedo venir con acompañante?
+                  <span class="faq-arrow">+</span>
+               </button>
+               <div class="faq-a">
+                  Nos encantaría conocer a esa persona tan especial para ti
+                  antes de la boda, si aún no hemos tenido la oportunidad.
+                  Por eso, cada invitación está dirigida a las personas que
+                  queremos que nos acompañen en este día tan importante para
+                  nosotros, y encontraréis a vuestro acompañante expresamente
+                  indicado en ella.
+               </div>
+            </div>
+
+            <div class="faq-item reveal">
+               <button class="faq-q" onclick="toggleFaq(this)">
+                  ¿Hay transporte organizado desde algún punto?
+                  <span class="faq-arrow">+</span>
+               </button>
+               <div class="faq-a">
+                  Ambas fincas se encuentran a unos 4 km del centro de
+                  Aranjuez, por lo que no hemos considerado necesario
+                  organizar transporte conjunto. Así tenéis la libertad de
+                  volver cuando queráis, sin estar condicionados por los
+                  horarios de autobús. Podéis llegar y volver por vuestra
+                  cuenta, en coche o taxi. Para facilitaros la ida y la
+                  vuelta de la boda, hemos acordado con los taxis de
+                  Aranjuez una tarifa fija por trayecto a El Regajal
+                  (pendiente de confirmar).
+               </div>
+            </div>
+
+            <div class="faq-item reveal">
+               <button class="faq-q" onclick="toggleFaq(this)">
+                  ¿Es obligatorio cumplir el dress code?
+                  <span class="faq-arrow">+</span>
+               </button>
+               <div class="faq-a">
+                  No es una norma estricta. El código de vestimenta es una
+                  recomendación que nos hace ilusión que tengáis en cuenta
+                  para contribuir al estilo y ambiente que nos gustaría
+                  crear en nuestro fin de semana especial.
+                  <br /><br />
+                  Sobre todo en la preboda, donde no existe un protocolo tan
+                  definido como en una boda, esperamos que os sirva como
+                  referencia para encontrar un look con el que os sintáis
+                  cómodos y encaje con el carácter que queremos darle.
+               </div>
+            </div>
+
+            <div class="faq-item reveal">
+               <button class="faq-q" onclick="toggleFaq(this)">
+                  ¿Puedo llevar niños?
+                  <span class="faq-arrow">+</span>
+               </button>
+               <div class="faq-a">
+                  ¡Claro! Los niños son bienvenidos. La finca tiene espacios al
+                  aire libre perfectos para los más pequeños. Indicadnos en el
+                  formulario cuántos niños vendrán para poder adaptar el menú y
+                  el espacio.
+               </div>
+            </div>
+
+            <div class="faq-item reveal">
+               <button class="faq-q" onclick="toggleFaq(this)">
+                  ¿Tenéis lista de boda?
+                  <span class="faq-arrow">+</span>
+               </button>
+               <div class="faq-a">
+                  Llevamos muchos años juntos y ya tenemos el hogar bien
+                  equipado. Si queréis hacernos un regalo, la mejor opción es
+                  una aportación para nuestra luna de miel. Os daremos los
+                  detalles cuando confirmeis asistencia.
+               </div>
+            </div>
+
+            <div class="faq-item reveal">
+               <button class="faq-q" onclick="toggleFaq(this)">
+                  ¿Qué hacemos si finalmente no puedo asistir o deseo modificar mi confirmación?
+                  <span class="faq-arrow">+</span>
+               </button>
+               <div class="faq-a">
+                  Puedes rellenar de nuevo el formulario con tu nueva
+                  elección y avisarnos lo antes posible para que podamos
+                  organizar todo con tiempo.
+               </div>
+            </div>
+
+            <div class="faq-item reveal">
+               <button class="faq-q" onclick="toggleFaq(this)">
+                  ¿A qué hora terminará la fiesta?
+                  <span class="faq-arrow">+</span>
+               </button>
+               <div class="faq-a">
+                  La fiesta en la finca El Regajal terminará sobre las 23 h.
+                  Para los que aún tengan ganas de más, en el centro de
+                  Aranjuez hay pubs nocturnos que suelen tener ambiente los
+                  sábados, o se podrá continuar la fiesta en Casa Triviño
+                  Eventos (pendiente de confirmar).
+               </div>
+            </div>
+
+            <div class="faq-item reveal">
+               <button class="faq-q" onclick="toggleFaq(this)">
+                  ¿A quién puedo contactar para dudas?
+                  <span class="faq-arrow">+</span>
+               </button>
+               <div class="faq-a">
+                  Para cualquier duda podéis escribirnos o llamarnos a
+                  nuestros teléfonos personales. Os responderemos lo antes
+                  posible.
+               </div>
+            </div>
+         </div>
+      </section>
+
+      <!-- 8. RSVP -->
+      <section id="rsvp">
+         <div class="rsvp-inner">
+            <div class="reveal">
+               <span class="section-label">Confirmación</span>
+               <h2 class="section-title">¿Nos acompañas?</h2>
+               <p class="section-body">
+                  Confírmanos tu asistencia antes del
+                  <strong style="color: var(--gold2); font-weight: 400"
+                     >1 de marzo de 2027</strong
+                  >. Nos ayudará muchísimo para organizar el gran día.
+               </p>
+            </div>
+
+            <form class="rsvp-form reveal" id="rsvp-form">
+               <div class="rsvp-field">
+                  <label for="r-nombre" class="sr-only"
+                     >Nombre completo</label
+                  >
+                  <input
+                     type="text"
+                     id="r-nombre"
+                     name="nombre"
+                     placeholder="Tu nombre completo"
+                     autocomplete="name"
+                  />
+               </div>
+
+               <div class="rsvp-row">
+                  <div class="rsvp-field">
+                     <label for="r-asistencia" class="sr-only"
+                        >Confirmación de asistencia</label
+                     >
+                     <select id="r-asistencia" name="asistencia">
+                        <option value="" disabled selected>
+                           ¿A qué asistirás?
+                        </option>
+                        <option value="preboda">
+                           Solo a la preboda 🥂
+                        </option>
+                        <option value="boda">Solo a la boda 💍</option>
+                        <option value="ambas">
+                           A la preboda y a la boda 🎉
+                        </option>
+                        <option value="ninguna">
+                           Lo siento, no podré asistir
+                        </option>
+                     </select>
+                  </div>
+                  <div class="rsvp-field">
+                     <label for="r-personas" class="sr-only"
+                        >Número de personas</label
+                     >
+                     <select id="r-personas" name="personas">
+                        <option value="" disabled selected>
+                           Nº de personas (incluida tú)
+                        </option>
+                        <option value="1">1 persona</option>
+                        <option value="2">2 personas</option>
+                        <option value="3">3 personas</option>
+                        <option value="4">4 personas</option>
+                     </select>
+                  </div>
+               </div>
+
+               <!-- Campos dinámicos: nombre y menú de cada persona -->
+               <div id="personas-detalle"></div>
+
+               <div class="rsvp-field">
+                  <label for="r-alojamiento" class="sr-only"
+                     >¿Necesitas alojamiento?</label
+                  >
+                  <select id="r-alojamiento" name="alojamiento">
+                     <option value="" disabled selected>
+                        ¿Necesitas alojamiento en Aranjuez?
+                     </option>
+                     <option value="si">Sí, me vendría bien</option>
+                     <option value="no">No, ya tengo dónde quedarme</option>
+                  </select>
+               </div>
+
+               <div class="rsvp-field">
+                  <label for="r-notas" class="sr-only">Notas adicionales</label>
+                  <textarea
+                     id="r-notas"
+                     name="notas"
+                     rows="3"
+                     placeholder="Alergias, intolerancias o cualquier cosa que debamos saber..."
+                  ></textarea>
+               </div>
+
+               <button type="button" class="rsvp-submit" onclick="submitRSVP()">
+                  Confirmar asistencia
+               </button>
+            </form>
+
+            <p class="rsvp-success" id="rsvp-success">
+               ¡Gracias por formar parte de este momento tan especial<br />para nosotros!
+            </p>
+         </div>
+      </section>
+<!-- SECCIÓN SUBIR FOTOS -->
+<section id="fotos" class="rsvp-section reveal">
+  <div class="container">
+    <span class="section-label">Comparte tus fotos</span>
+    <h2 class="section-title">Comparte tus fotos</h2>
+    <p class="section-subtitle">
+      Nos encantará revivir la boda y la preboda desde vuestra perspectiva,
+      descubrir esos momentos que quizá nosotros no llegamos a ver y
+      guardar para siempre todos esos recuerdos compartidos con vosotros.
+      <br /><br />
+      Por eso, os animamos a subir aquí vuestras fotos y, sobre todo,
+      vuestros vídeos. Queremos tenerlos todos para poder volver a ese fin
+      de semana, a esas risas y a esos momentos juntos siempre que
+      queramos. 
+    </p>
+
+    <div class="rsvp-card">
+      <form id="foto-form" onsubmit="event.preventDefault(); uploadFoto();">
+        <div class="form-group">
+          <label for="f-nombre">Tu Nombre</label>
+          <input type="text" id="f-nombre" placeholder="Ej. Carlos" required>
         </div>
-        <figcaption class="tile-caption"><span class="cap-a">Asistencia a Rebecca Tsuki</span><span class="cap-b">Asistencia de vestuario — anuncio de Iberia</span></figcaption>
-      </figure>
-      -->
 
-      <figure class="tile">
-        <button class="thumb" data-full="estilismos/estilismos5.0.jpg" aria-label="Ampliar imagen">
-          <img src="estilismos/estilismos5.0.jpg" alt="Estilismo">
-        </button>
-        <figcaption class="tile-caption"><span class="cap-a"></span><span class="cap-b"></span></figcaption>
-      </figure>
-
-      <figure class="tile tile--asistencia">
-        <button class="thumb" data-full="estilismos/estilismos6.0.jpg, estilismos/estilismos6.1.jpg" aria-label="Ampliar imagen">
-          <img src="estilismos/estilismos6.0.jpg" alt="Asistencia">
-        </button>
-        <figcaption class="tile-caption"><span class="cap-a">Asistencia a Giovanni Beda</span><span class="cap-b">Les Hommes Publics</span></figcaption>
-      </figure>
-
-      <figure class="tile">
-        <button class="thumb" data-full="estilismos/estilismos7.0.jpg, estilismos/estilismos7.1.jpg" aria-label="Ampliar imagen">
-          <img src="estilismos/estilismos7.0.jpg" alt="Estilismo">
-        </button>
-        <figcaption class="tile-caption"><span class="cap-a"></span><span class="cap-b"></span></figcaption>
-      </figure>
-
-      <!-- Will Smith, Russ — "Work of Art" (feat. Jaden). Vídeo oficial en YouTube. -->
-      <figure class="tile tile--asistencia">
-        <div class="video-embed">
-          <iframe
-            src="https://www.youtube.com/embed/5Sdbi55HY0o?autoplay=1&mute=1&loop=1&playlist=5Sdbi55HY0o&controls=0&modestbranding=1&rel=0&playsinline=1"
-            title="Will Smith — Work of Art"
-            allow="autoplay; encrypted-media"
-            loading="lazy">
-          </iframe>
+        <div class="form-group">
+          <label for="f-archivo">Selecciona tus fotos o vídeos</label>
+          <input type="file" id="f-archivo" accept="image/*,video/*" multiple required>
         </div>
-        <figcaption class="tile-caption"><span class="cap-a">Asistencia a Chamo Armada</span><span class="cap-b">Vestuario para bailarines y talents — Will Smith, «Work of Art»</span></figcaption>
-      </figure>
 
-      <figure class="tile tile--asistencia">
-        <button class="thumb" data-full="estilismos/estilismos8.0.jpg, estilismos/estilismos8.1.jpg" aria-label="Ampliar imagen">
-          <img src="estilismos/estilismos8.0.jpg" alt="Asistencia">
-        </button>
-        <figcaption class="tile-caption"><span class="cap-a">Asistencia a Jonathan Hunguet</span><span class="cap-b">Behind the blind</span></figcaption>
-      </figure>
+        <button type="submit" id="btn-foto" class="rsvp-submit">SUBIR FOTO O VÍDEO</button>
+      </form>
 
-      <figure class="tile">
-        <button class="thumb" data-full="estilismos/estilismos9.0.jpg, estilismos/estilismos9.1.jpg" aria-label="Ampliar imagen">
-          <img src="estilismos/estilismos9.0.jpg" alt="Estilismo, sin título">
-        </button>
-        <figcaption class="tile-caption"><span class="cap-a"></span><span class="cap-b"></span></figcaption>
-      </figure>
-
-      <figure class="tile">
-        <button class="thumb" data-full="estilismos/estilismos10.jpg, estilismos/estilismos10.jpg" aria-label="Ampliar imagen">
-          <img src="estilismos/estilismos10.jpg" alt="Estilismo, sin título">
-        </button>
-        <figcaption class="tile-caption"><span class="cap-a"></span><span class="cap-b"></span></figcaption>
-      </figure>
-
+      <div id="foto-success" style="display: none; text-align: center; padding: 20px;">
+        <p style="font-size: 18px; color: var(--dark, #333);">¡Foto subida con éxito! Gracias por compartirla. ❤️</p>
+      </div>
     </div>
-  </section>
-</main>
 
-<footer class="site-footer">
-  <a href="index.html">Volver a trabajo</a>
-</footer>
+  </div>
+</section>
+      <!-- 9. FOOTER -->
+      <footer>
+         <div class="footer-names">Lucía & Pablo</div>
+         <p class="footer-date">
+            24 de abril de 2027 &nbsp;·&nbsp; El Regajal, Aranjuez
+         </p>
+         <p class="footer-msg">
+            "Las personas que quieres son el único hogar que importa."
+         </p>
+         <p class="footer-bottom">Con todo nuestro amor · 2027</p>
+      </footer>
 
-<div class="lightbox" id="lightbox" hidden>
-  <button class="lightbox-close" id="lightboxClose" aria-label="Cerrar">×</button>
-  <button class="lightbox-prev" id="lightboxPrev" aria-label="Imagen anterior">‹</button>
-  <img id="lightboxImage" src="" alt="">
-  <button class="lightbox-next" id="lightboxNext" aria-label="Imagen siguiente">›</button>
-  <figcaption class="lightbox-caption" id="lightboxCaption" hidden></figcaption>
-</div>
-
-<script src="script.js"></script>
-</body>
+      <!-- JavaScript -->
+      <script src="script.js?v=9"></script>
+   </body>
 </html>
