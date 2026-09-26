@@ -5,6 +5,7 @@ const SCRIPT_URL = 'https://script.google.com/macros/s/AKfycbw4i-xvxLwwk1856Wi72
   const overlay  = document.getElementById('intro-overlay');
   const envelope = document.getElementById('envelope');
   if (!overlay || !envelope) return;
+  if (location.hash === '#fotos') { overlay.classList.add('hidden'); return; }
 
   const reduceMotion = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
 
@@ -200,50 +201,18 @@ function submitRSVP() {
   });
 }
 
-/* ── CARGAR FOTOS EN LA GALERÍA ── */
-function cargarGalería() {
-  const grid = document.getElementById('grid-fotos');
-  if (!grid) return;
-
-  // '?t=' evita que el navegador muestre una lista antigua guardada en caché
-  fetch(SCRIPT_URL + '?t=' + Date.now(), { cache: 'no-store' })
-    .then(r => r.json())
-    .then(data => {
-      if (data.result !== 'success') throw new Error(data.error || 'Respuesta no válida');
-      grid.innerHTML = '';
-
-      if (!data.fotos || data.fotos.length === 0) {
-        grid.innerHTML = '<p class="fotos-vacio">Todavía no hay fotos. ¡Sé el primero en compartir una!</p>';
-        return;
-      }
-
-      data.fotos.forEach(foto => {
-        const item = document.createElement('div');
-        item.className = 'foto-item';
-        const enlace = foto.ver || foto.url;
-        item.innerHTML = `
-          <a href="${enlace}" target="_blank" rel="noopener">
-            <img src="https://lh3.googleusercontent.com/d/${foto.id}=w1000" alt="Foto de la boda" loading="lazy" referrerpolicy="no-referrer">
-            ${foto.tipo === 'video' ? '<span class="foto-play">▶</span>' : ''}
-          </a>
-          ${foto.descargar ? `<a class="foto-download" href="${foto.descargar}" title="Descargar" aria-label="Descargar">↓</a>` : ''}`;
-        // Si Drive aún no ha generado la miniatura, ocultamos la casilla rota
-        const img = item.querySelector('img');
-        img.onerror = () => {
-          // Plan B: miniatura de Drive; si tampoco carga, ocultamos la casilla
-          if (!img.dataset.retry) { img.dataset.retry = 1; img.src = foto.url; }
-          else item.remove();
-        };
-        grid.appendChild(item);
-      });
-    })
-    .catch(err => {
-      console.error('Error al cargar la galería:', err);
-      grid.innerHTML = '<p class="fotos-vacio">No se pudieron cargar las fotos en este momento.</p>';
-    });
+/* ── ENLACE DIRECTO A LA SUBIDA DE FOTOS (código QR → #fotos) ── */
+// Las fotos solo se guardan en la carpeta de Drive; no se muestran en la web.
+// Al entrar desde el QR, recolocamos el scroll cuando todo ha cargado
+// (las imágenes y mapas pueden desplazar la sección mientras cargan).
+if (location.hash === '#fotos') {
+  window.addEventListener('load', () => {
+    const fotos = document.getElementById('fotos');
+    if (!fotos) return;
+    fotos.classList.add('visible');
+    fotos.scrollIntoView({ behavior: 'auto', block: 'start' });
+  });
 }
-
-document.addEventListener('DOMContentLoaded', cargarGalería);
 
 /* ── SUBIR FOTOS Y VÍDEOS ── */
 // Google Apps Script acepta ~50 MB por envío; en base64 el archivo crece un 33 %
@@ -325,7 +294,6 @@ async function uploadFoto() {
   if (fallos.length) {
     alert('Algunos archivos no se han podido subir:\n\n' + fallos.map(f => '· ' + f).join('\n'));
   }
-  setTimeout(cargarGalería, 2000);
 }
 
 /* ── CUENTA ATRÁS ── */
