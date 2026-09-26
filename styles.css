@@ -354,7 +354,9 @@ strong, b { font-style: italic; }
   font-size: 14px; color: var(--muted);
 }
 .ev-meta-row:first-child { border-top: 0.5px solid rgba(184,157,114,0.25); }
-.ev-meta-row strong, .info-toggle summary strong { font-weight: 500; color: var(--dark, #2a2520); }
+.info-toggle summary strong { font-weight: 500; color: var(--dark, #2a2520); }
+/* Aviso de llegar 15 min antes: mismo estilo que los nombres de restaurantes */
+.ev-meta-row strong { font-weight: 400; color: inherit; }
 .ev-meta-key {
   font-size: 9px; letter-spacing: 3px; text-transform: uppercase;
   color: var(--gold); min-width: 56px; font-weight: 400;
