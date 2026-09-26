@@ -688,7 +688,7 @@ footer {
 
 /* ── MOBILE MENU ── */
 #mobile-menu {
-  display:none; position:fixed; inset:0; z-index:998;
+  display:none; position:fixed; inset:0; z-index:1001; /* por encima de la barra de navegación (999) */
   background: rgba(28,26,24,0.97);
   flex-direction:column; justify-content:center; align-items:center; gap:32px;
 }
@@ -699,9 +699,10 @@ footer {
 }
 #mobile-menu a:hover { opacity:1; color:var(--gold2); }
 #mobile-menu .close-btn {
-  position:absolute; top:28px; right:32px;
+  position:absolute; top:16px; right:16px;
+  width:48px; height:48px; /* zona táctil cómoda */
   background:none; border:none; cursor:pointer;
-  font-size:28px; color:rgba(255,255,255,0.5);
+  font-size:28px; color:rgba(255,255,255,0.7);
 }
 
 /* ── RESPONSIVE ── */
