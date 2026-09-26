@@ -185,7 +185,7 @@ body.intro-locked { overflow: hidden; height: 100vh; }
 .hero-bg {
   /* Foto a pantalla completa con el mínimo zoom posible (sin efecto zoom) */
   position: absolute; inset:0;
-  background: url('WhatsApp%20Image%202026-09-21%20at%2019.18.04.jpeg') center 100%/cover no-repeat;
+  background: url('Gemini_Generated_Image_3a9cy03a9cy03a9c.jpg') 46% 70%/cover no-repeat;
 }
 .hero-overlay {
   position: absolute; inset:0;
@@ -770,5 +770,13 @@ footer {
 
 /* Portada en ordenador: subimos un poco el texto para que no tape las manos ni el anillo */
 @media (min-aspect-ratio: 1/1) {
-  .hero-content { margin-bottom: 22vh; }
+  .hero-content { margin-bottom: 28vh; }
+}
+
+/* Portada en móvil (pantalla vertical): usamos la foto vertical para que no se recorte */
+@media (max-aspect-ratio: 3/4) {
+  .hero-bg {
+    background: url('Gemini_Generated_Image_vyr0navyr0navyr0.jpeg') 42% 60%/cover no-repeat;
+  }
+  .hero-content { margin-bottom: 28vh; }
 }
