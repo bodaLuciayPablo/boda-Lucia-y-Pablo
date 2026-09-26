@@ -183,12 +183,10 @@ body.intro-locked { overflow: hidden; height: 100vh; }
   overflow: hidden;
 }
 .hero-bg {
+  /* Foto a pantalla completa con el mínimo zoom posible (sin efecto zoom) */
   position: absolute; inset:0;
-  background: url('WhatsApp%20Image%202026-09-21%20at%2019.18.04.jpeg') center 80%/cover no-repeat, url('https://images.ecestaticos.com/-r7TpUsITMSvmCT2jBGJ_OBUMIU=/0x0:2272x1515/1200x900/filters:fill(white):format(jpg)/f.elconfidencial.com%2Foriginal%2Fcf1%2F02e%2Fd2f%2Fcf102ed2f582a5b953fbca7f031c6ce6.jpg') center/cover no-repeat;
-  transform: scale(1.05);
-  animation: heroZoom 14s ease-out forwards;
+  background: url('WhatsApp%20Image%202026-09-21%20at%2019.18.04.jpeg') center 100%/cover no-repeat;
 }
-@keyframes heroZoom { to { transform: scale(1); } }
 .hero-overlay {
   position: absolute; inset:0;
   background: linear-gradient(180deg, rgba(20,17,14,0.35) 0%, rgba(20,17,14,0.55) 60%, rgba(20,17,14,0.75) 100%);
@@ -236,6 +234,8 @@ body.intro-locked { overflow: hidden; height: 100vh; }
 @keyframes scrollLine { 0%,100%{opacity:0.4;transform:scaleY(0.5) translateY(-10px)} 50%{opacity:1;transform:scaleY(1) translateY(0)} }
 
 /* ── SHARED SECTION STYLES ── */
+strong, b { font-style: italic; }
+
 .section-label {
   display: block;
   font-size: 10px; letter-spacing: 5px; text-transform: uppercase;
@@ -464,6 +464,22 @@ body.intro-locked { overflow: hidden; height: 100vh; }
   text-align: center;
   background: var(--white);
 }
+.estancia-hero {
+  position: relative;
+  margin: -120px -48px 0;
+  padding: 150px 48px 130px;
+  /* 1.ª capa: foto propia (calle-de-la-reina.jpg en la raíz del repo).
+     2.ª capa: foto provisional, se ve solo mientras no exista la propia. */
+  background:
+    linear-gradient(180deg, rgba(20,17,14,0.45) 0%, rgba(20,17,14,0.55) 100%),
+    url('calle-de-la-reina.jpg') center/cover no-repeat,
+    url('https://upload.wikimedia.org/wikipedia/commons/7/78/Aranjuez_JardinParterre_CoronaFloral.jpg') center/cover no-repeat;
+  background-color: var(--green);
+}
+.estancia-hero .section-label { color: var(--gold2); }
+.estancia-hero .section-title { color: #fff; }
+.estancia-hero .section-body { color: rgba(255,255,255,0.9); font-weight: 400; }
+
 .estancia-info {
   display: grid; grid-template-columns: 1fr 1fr;
   gap: 56px; max-width: 1060px; margin: 56px auto 0; text-align: left;
@@ -541,39 +557,6 @@ body.intro-locked { overflow: hidden; height: 100vh; }
 #foto-form .rsvp-submit { max-width: 380px; background: var(--dark); }
 #foto-form .rsvp-submit:hover { background: var(--gold); }
 
-.fotos-grid {
-  display: grid;
-  grid-template-columns: repeat(3, 1fr);
-  gap: 6px;
-  max-width: 1060px; margin: 64px auto 0;
-}
-.foto-item { overflow: hidden; aspect-ratio: 1/1; position: relative; }
-.foto-item img { width:100%; height:100%; object-fit:cover; display:block; transition: transform 0.5s; }
-.foto-item:hover img { transform: scale(1.06); }
-.foto-download {
-  position: absolute; bottom: 8px; right: 8px;
-  width: 30px; height: 30px; border-radius: 50%;
-  background: rgba(28,26,24,0.55); backdrop-filter: blur(2px);
-  color: #fff; text-decoration: none;
-  display: flex; align-items: center; justify-content: center;
-  font-size: 14px; opacity: 0; transition: opacity 0.25s, background 0.25s;
-}
-.foto-item:hover .foto-download,
-.foto-item:focus-within .foto-download { opacity: 1; }
-.foto-download:hover { background: var(--gold); }
-.foto-item > a:first-child { display:block; width:100%; height:100%; }
-.foto-play {
-  position:absolute; top:50%; left:50%; transform:translate(-50%,-50%);
-  width:44px; height:44px; border-radius:50%;
-  background: rgba(28,26,24,0.55); color:#fff;
-  display:flex; align-items:center; justify-content:center; font-size:16px;
-  pointer-events:none;
-}
-.fotos-vacio { grid-column: 1 / -1; text-align:center; color: var(--muted); font-size:14px; padding: 24px 0; }
-@media (hover: none) {
-  /* En táctil no hay hover: mostramos siempre el botón */
-  .foto-download { opacity: 1; }
-}
 
 /* ── FAQ ── */
 #faq { background: var(--cream); padding: 120px 48px; }
@@ -749,7 +732,6 @@ footer {
   .rsvp-row { grid-template-columns:1fr; }
   .persona-block { grid-template-columns:1fr; }
   .estancia-info { grid-template-columns:1fr; gap:40px; }
-  .fotos-grid { grid-template-columns:1fr 1fr; }
   .nav-links { display:none; }
   .nav-burger { display:flex; }
   #nav { padding:0 24px; }
@@ -759,6 +741,7 @@ footer {
   .bienvenida-text { padding:48px 28px; }
   .event-card { padding:40px 28px; }
   #eldia, #aranjuez, #fotos, #faq { padding:80px 24px; }
+  .estancia-hero { margin: -80px -24px 0; padding: 110px 24px 90px; }
   .rsvp-card { padding:32px 24px; }
   #rsvp { padding:100px 24px; }
   footer { padding:60px 24px 40px; }
@@ -783,4 +766,9 @@ footer {
   .faq-q { font-size: 19px; }
   .ev-meta-row { font-size: 14.5px; }
   .ev-link { font-size: 11.5px; letter-spacing: 1.8px; }
+}
+
+/* Portada en ordenador: subimos un poco el texto para que no tape las manos ni el anillo */
+@media (min-aspect-ratio: 1/1) {
+  .hero-content { margin-bottom: 22vh; }
 }
